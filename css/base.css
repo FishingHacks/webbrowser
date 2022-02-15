@@ -1,0 +1,218 @@
+/* NAVBAR */
+#navbar > * { height: inherit; }
+
+#navbar {
+  height: var(--bar-heights);
+  display: flex;
+  position: fixed;
+
+  width: 100%;
+  top: 0px;
+  padding-left: calc(var(--nav-side-padding)/2);
+
+  padding-top: var(--nav-vert-padding);
+  padding-bottom: var(--nav-vert-padding);
+
+  background: var(--nord5);
+
+  box-shadow: inset 0px -1px 0px 0px var(--outline);
+
+  -webkit-app-region: drag;
+}
+
+/* NAVBAR ITEMS */
+
+.spacer {
+  flex-grow: 1;
+}
+
+#navbar > * > button > img { opacity: 0.9; }
+#navbar * {
+  -webkit-app-region: no-drag;
+}
+
+.nav-group {
+  display: flex;
+}
+
+.nav-group > button {
+  background: none;
+  width: 34px;
+  border-radius: var(--round-corners);
+
+  transition: var(--transition);
+}
+
+.nav-group > button:disabled {
+  opacity: var(--disabled-opacity);
+}
+
+.nav-group > button:not(:disabled):hover {
+  background: var(--darker-1);
+}
+
+.nav-group > button:not(:disabled):active {
+  background: var(--darker-2);
+}
+
+.nav-group > button > img {
+  width: 85%;
+}
+
+.nav-group:last-child {
+  margin-right: var(--nav-side-padding);
+}
+
+#nav-center {
+  background: var(--nord6);
+  flex-grow: 1;
+  margin: 0px 5px;
+
+  display: flex;
+  border-radius: var(--round-corners);
+
+  box-shadow: inset 1px -1px 0px 0px var(--nord4), inset -1px 1px 0px 0px var(--nord4);
+
+  box-sizing: border-box;
+
+  width: 100%;
+}
+
+#nav-center:hover {
+  border: var(--accent) 1px solid;
+}
+
+#nav-center > button {
+  padding: 10px;
+  transition: var(--transition);
+  border-radius: var(--round-corners);
+}
+
+#nav-center > button:not(.secure):not(.insecure):hover {
+  background: var(--darker-1);
+}
+
+#nav-center > button > img{
+  width: 17px; height: 17px;
+}
+
+#url {
+  height: 100%;
+  width: 100%;
+
+  background: transparent;
+  border: none;
+
+  padding: 0px 10px;
+
+  box-sizing: border-box;
+  border-radius: var(--round-corners);
+
+  text-align: center;
+}
+
+#url::-webkit-input-placeholder { color: var(--foreground); opacity: 0.35; }
+#url::selection { background: var(--accent); }
+
+.secure {
+  background: #DCFFDF;
+  border-radius: var(--round-corners) 0px 0px var(--round-corners);
+}
+
+.secure > img {
+  filter: invert(56%) sepia(29%) saturate(4872%) hue-rotate(76deg) brightness(94%) contrast(111%) !important;
+}
+
+.insecure {
+  background: #FFDCDC;
+  border-radius: var(--round-corners) 0px 0px var(--round-corners);
+}
+
+.insecure > img {
+  filter: invert(22%) sepia(72%) saturate(7488%) hue-rotate(356deg) brightness(84%) contrast(122%) !important;
+}
+
+#site-info { transition: var(--transition); }
+
+/* DRAGGABLE REGION */
+
+#drag-region {
+  width: 200px;
+  min-width: 0px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  -webkit-app-region: drag;
+}
+/* WINDOW CONTROLS */
+
+#window-controls {
+  display: grid;
+  grid-template-columns: repeat(3, 40px);
+  top: 0;
+  right: 0;
+  font-size: 14px;
+
+  -webkit-app-region: no-drag;
+
+  margin-left: 25px;
+  margin-right: 14px;
+}
+
+#window-controls .button {
+  grid-row: 1 / span 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: inherit;
+}
+
+#window-controls .button:after {
+  content: '';
+  width: 40px;
+  height: 100%;
+  position: absolute;
+}
+
+#window-controls .button svg {
+  width: 15px;
+  height: 15px;
+}
+
+#window-controls .button {
+  user-select: none;
+  transition: var(--transition);
+}
+
+#window-controls .button:hover{ background: var(--darker-1); }
+
+#window-controls #min-button { grid-column: 1; }
+#window-controls #max-button,
+#window-controls #restore-button { grid-column: 2; }
+#window-controls #close-button {
+  grid-column: 3;
+  transition: var(--transition);
+}
+
+#window-controls #restore-button { display: none; }
+
+#window-controls #close-button:after { margin-left: 3px; }
+#window-controls #close-button:hover { background: var(--accent);  }
+#window-controls #close-button:hover svg { fill: var(--background) !important; }
+
+/* SPINNER */
+
+.spinner { animation: rotator var(--spinner-duration) linear infinite; }
+
+@keyframes rotator {0% { transform: rotate(0deg); } 100% { transform: rotate(270deg); }}
+
+.path {
+  stroke-dasharray: var(--spinner-offset); stroke-dashoffset: 0; stroke: #4285F4;
+  transform-origin: center; animation: dash var(--spinner-duration) ease-in-out infinite;
+}
+
+@keyframes dash {
+ 0% { stroke-dashoffset: var(--spinner-offset); }
+ 50% { stroke-dashoffset: calc(var(--spinner-offset)/4); transform:rotate(135deg);}
+ 100% { stroke-dashoffset: var(--spinner-offset); transform:rotate(450deg); }
+}

@@ -1,0 +1,77 @@
+{
+	"name": "browser",
+	"productName": "Browser",
+	"version": "1.1.0-beta.1",
+	"description": "A Browser.",
+	"main": "main.js",
+	"keywords": [
+		"browser",
+		"web"
+	],
+	"build": {
+		"appId": "com.browser.browser",
+		"productName": "Browser",
+		"win": {
+			"target": [
+				"nsis",
+				"zip"
+			],
+			"icon": "images/peacock.ico"
+		},
+		"mac": {
+			"category": "productivity",
+			"target": [
+				"dmg"
+			],
+			"icon": "images/peacock.png"
+		},
+		"linux": {
+			"category": "Network",
+			"target": [
+				"AppImage",
+				"deb"
+			],
+			"icon": "images/peacock.png"
+		},
+		"nsis": {
+			"oneClick": "false",
+			"allowToChangeInstallationDirectory": "true",
+			"perMachine": "true"
+		},
+		"fileAssociations": [
+			{
+				"name": "HTML Document",
+				"description": "Browser",
+				"ext": "html",
+				"icon": "../images/peacock.ico"
+			},
+			{
+				"name": "WebP Image",
+				"description": "Browser WebP Image",
+				"ext": "webp",
+				"icon": "../images/peacock.ico"
+			}
+		]
+	},
+	"scripts": {
+		"start": "electron .",
+		"build-linux": "electron-builder --linux --publish always",
+		"build-win": "electron-builder --win --publish always"
+	},
+	"author": "Spike Codes <19519553+spikecodes@users.noreply.github.com>",
+	"license": "MIT",
+	"devDependencies": {
+		"electron": "^10.0.0-beta.1",
+		"electron-builder": "^22.6.1"
+	},
+	"dependencies": {
+		"@cliqz/adblocker-electron": "^1.15.0",
+		"cross-fetch": "^3.0.4",
+		"electron-context-menu": "^2.0.1",
+		"electron-store": "^5.1.1",
+		"electron-updater": "^4.3.1",
+		"sortablejs": "^1.10.2",
+		"uuid": "^8.1.0",
+		"v8-compile-cache": "^2.1.0"
+	}
+}
